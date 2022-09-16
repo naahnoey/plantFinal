@@ -27,7 +27,7 @@ import com.example.demo.repository.OrderRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/api")
