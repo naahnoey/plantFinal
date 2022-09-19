@@ -11,33 +11,33 @@
 </template>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-// $(function() { 
-//         $("#query").click( function() {
-//            /*$("#content").append($("#queryin").val());*/
-//             $.ajax( {
-//              type: "post",
-//              dataType: "text",
-//              async: false,
-//              url: "http://localhost:8090/api/chatbot/chatbot/",
-//              data: 
-//             {
-//                 query:$('#queryin').val()
-//                   },
-//                success: function(data) {
-//                console.log(data);
-//                var spt = data.split('http');
-//                /* console.log(spt); */
-//                document.getElementById('image').src= "http"+spt[1];
-//                   $("#content").append("\n");
-//                   $("#content").append(spt[0]);
-//                   $("#content").append("\n");
-//                   $("#content").append("\n");
-//                   $("#content").append("======================================");
-//                   $("#content").append("\n");
-//                }   
-//            });           
-//         });  
-//      }) 
+$(function() { 
+        $("#query").click( function() {
+           /*$("#content").append($("#queryin").val());*/
+            $.ajax( {
+             type: "post",
+             dataType: "text",
+             async: false,
+             url: "http://101.101.209.116/:8090/api/chatbot/chatbot/",
+             data: 
+            {
+                query:$('#queryin').val()
+                  },
+               success: function(data) {
+               console.log(data);
+               var spt = data.split('http');
+               /* console.log(spt); */
+               document.getElementById('image').src= "http"+spt[1];
+                  $("#content").append("\n");
+                  $("#content").append(spt[0]);
+                  $("#content").append("\n");
+                  $("#content").append("\n");
+                  $("#content").append("======================================");
+                  $("#content").append("\n");
+               }   
+           });           
+        });  
+     }) 
      export default {
       data(){
          return {
