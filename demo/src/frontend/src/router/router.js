@@ -56,6 +56,9 @@ import modifyReview from '../views/modifyReview.vue';
 import reviewAdmin from '../views/reviewListAdmin.vue';
 import reviewDetailAdmin from '../views/reviewDetailAdmin.vue';
 
+import userList from '../views/userListAdmin.vue';
+import userDetail from '../views/userDetail.vue';
+
 Vue.use(Router);
 export const router = new Router({
   mode: 'history',
@@ -294,7 +297,18 @@ export const router = new Router({
       path: '/admin/updateoStatus/:oid',
       name: 'updateoStatus',
       component: UpdateoStatus
-    }
+    },
+    {
+      path: '/user/detail/:username',
+      name: 'user-detail',
+      component: userDetail
+    },
+    {
+      path: '/admin/user',
+      name: 'userList-admin',
+      component: userList
+    },
+
 
   ]
 });
