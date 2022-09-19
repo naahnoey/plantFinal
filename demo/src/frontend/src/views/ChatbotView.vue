@@ -18,7 +18,7 @@ $(function() {
              type: "post",
              dataType: "text",
              async: false,
-             url: "http://101.101.209.116/:8090/api/chatbot/chatbot/",
+             url: "http://101.101.209.116:8090/api/chatbot/chatbot/",
              data: 
             {
                 query:$('#queryin').val()
