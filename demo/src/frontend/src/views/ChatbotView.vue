@@ -9,8 +9,8 @@
       </div>
    </section>
 </template>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+import $ from 'jquery';
 $(function() { 
         $("#query").click( function() {
            /*$("#content").append($("#queryin").val());*/
