@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,21 +19,22 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long pid;
 	
-	private String pname; // 상품명
+	private String pname; // �긽�뭹紐�
 	
-	private String ptype; // 카테고리
+	private String ptype; // 移댄뀒怨좊━
 	
-	private Integer pprice; // 가격
+	private Integer pprice; // 媛�寃�
 	
-	private Integer pstock; // 수량
+	private Integer pstock; // �닔�웾
 	
-	private String pimg1; // 이미지 파일 경로
+	private String pimg1; // �씠誘몄� �뙆�씪 寃쎈줈
 //	
-//	private String pImg2; // ��ǰ�̹���2
+//	private String pImg2; // 占쏙옙품占싱뱄옙占쏙옙2
 //	
-//	private String pImg3; // ��ǰ�̹���3
+//	private String pImg3; // 占쏙옙품占싱뱄옙占쏙옙3
 	
-	private String pdetail; // 상품 상세정보
+	@Column(columnDefinition = "TEXT")
+	private String pdetail; // �긽�뭹 �긽�꽭�젙蹂�
 	
 	public Product() {
 		
