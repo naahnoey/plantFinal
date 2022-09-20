@@ -55,7 +55,6 @@
 </template>
 <script>
 import sidemenuAdmin from '../views/sidemenu_admin';
-// import axios from 'axios';
 import FaqDataService from '../services/FaqDataService';
 export default {
   name: "faq-management-admin",
