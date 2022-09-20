@@ -125,7 +125,10 @@ export default {
 
 #pimg1 {    /* 파일 추가 input 태그 테두리 삭제 */
     border: 0;
-    margin-left: -420px;
+    width: 150px;
+    height: 100px;
+    margin-left: -550px;
+
 }
 
 #product-add button {   /* 등록 버튼 */

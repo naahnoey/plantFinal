@@ -118,7 +118,8 @@ components: {
 
 #pimg1 {    /* 파일 추가 input 태그 테두리 삭제 */
     border: 0;
-    margin-left: -420px;
+    margin-left: -20px;
+    padding-bottom: 30px;
 }
 
 #product-add button {   /* 등록 버튼 */
