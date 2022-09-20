@@ -45,11 +45,27 @@
                                     <button type="button" class="btn">Detail</button>
                                     <div id="tab1" class="cont">
                                         <!-- Detail 버튼 화면 구성 시작-->
-                                       <div id="prdDetailContent">
-                                        <h1> 제품 상세 탭 화면 표시 공간 </h1>
-            
-                                        * 배송 안내 *
-                                        <br>.<br>.<br>.<br>PhilodendronJari
+                                       <div id="prdDetailContent"><br>
+                                            <h1> Product Details </h1><br>
+                                            {{ currentProduct.pname }} <br><br>
+                                            <img :src="currentProduct.pimg1" class="img-size" ><br><br>
+                                            <div v-html="currentProduct.pdetail"></div>
+
+                                            <br><br>
+                                            <p style="background-color: rgb(190, 190, 190); color: white; font-weight: bold; width: 800px; margin-left: 150px;"> ※ 시장 상황에 따라서 식물의 크기가 다소 차이가 날 수 있으니 양해 부탁드립니다.  </p>
+                                            <br><br>
+
+                                            <h2> MORE INFO </h2><br>
+
+                                            <p style="background-color: rgb(22, 160, 133); color: white; font-weight: bold; width: 800px; margin-left: 150px;"> 
+                                                ※ 관심식물에 대한 더 많은 정보가 궁금하다면 트레플 챗봇한테 물어보세요.
+                                            </p>
+
+                                            
+                                            <router-link to="/chatbot" style="font-weight: bold; margin-top: -30px;" class="nav-link">
+                                                ▷ ▶ 챗봇상담 바로가기 ◁ ◀ 
+                                            </router-link>
+                                            <br><br>
                                        </div>
                                        <!-- Detail 버튼 화면 구성 끝-->
                                     </div>
@@ -139,8 +155,38 @@
                                     <div id="tab3" class="cont">
                                         <!-- Q&A 화면 구성 시작 -->
                                         <div id="qnaContent">
-                                            <h3>Q&A</h3> <hr>
-                                            <button type="button" id="createqnaBtn" @click="addqna_customer()">문의하기</button><br><br>
+                                            <h3>FAQ/Q&A</h3> <hr>
+                                            <button type="button" id="createqnaBtn" @click="addqna_customer()">문의하기</button>
+
+                                            <!--faq상세 내용-->
+                                            <div v-if="faqShow" id="questionDetail">
+                                                <h4>{{ currentFaq.ftitle }}</h4>                                              
+                                                <p class="qnaContent"><pre>{{ currentFaq.fcontent }}</pre></p>                                           
+                                            </div>
+                                            <!-- FAQ 목록 -->
+                                            <div class="submit-form">
+                                                <section>
+                                                    <div id="faq-main">
+                                                        <table class="text-center">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>번호</th>
+                                                                    <th>자주 묻는 질문</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody >
+                                                                <tr v-for="(faq, index) in faqs" :key="index">
+                                                                    <td> {{index+1}}</td>
+                                                                    <td>
+                                                                        <!-- <router-link :to="`/faq/detail/${faq.fid}`">{{faq.ftitle}} </router-link> -->
+                                                                        <button id="questionTitle" @click="getFaq(faq.fid)">{{ faq.ftitle }}</button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </section>
+                                            </div>                  
                                             <!-- 문의글 상세 내용 -->
                                             <div v-if="questionShow" id="questionDetail">
                                                 <h4>{{ currentQuestion.qtitle }}</h4>
@@ -230,6 +276,7 @@
     import AnswerDataService from '../services/AnswerDataService';
     import reviewservice from '../services/reviewservice';
     import reviewreplyservice from '../services/reviewreply.service';
+    import FaqDataService from '../services/FaqDataService';
 
     export default {
       name: 'ProductDetail',
@@ -535,12 +582,30 @@
                 console.log("삭제 취소");
                 
             }
+        },
+        listFaq(){//faq목록
+            FaqDataService.getAll()
+            .then(response => {
+                this.faqs = response.data;
+                console.log(response.data);
+            }).catch(()=>{}); 
+        },
+        getFaq(fid) {  //faq 상세
+            FaqDataService.get(fid)
+            .then(response => {
+                this.faqShow = true;
+                this.currentFaq = response.data;
+                console.log(response.data);
+            }).catch(e => {
+                console.log(e);
+            });
         }
       },
       mounted() {
         this.getProduct(this.$route.params.pid);
         this.retrieveQuestions();
         this.getReviewList();
+        this.listFaq();
 
         // 탭 누르면 해당 화면으로 전환하는 JS 코드
         const tabList = document.querySelectorAll('.tab_menu .list li');
@@ -705,6 +770,7 @@
     
     #prdDetailContent {
         margin-top: 0px; 
+        margin-left: -150px; 
         width: 1100px; 
         height: 1000px; 
         background-color: white; 

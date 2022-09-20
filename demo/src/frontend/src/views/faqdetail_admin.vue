@@ -1,5 +1,9 @@
-<template>    
+<template> 
+        <div>   
+        <side-menu></side-menu>
+        
         <div id="faq-main" v-if="currentFaq != null">
+            
             <h3><strong>FAQ</strong></h3>
             <br>            
             <table>
@@ -22,9 +26,11 @@
                 <router-link :to="`/admin/faq/update/${currentFaq.fid}`" style="float:right;margin-right:10px;" class="btn" >수정</router-link>
             </p>
         </div>   
+        </div>
 </template>
 
 <script>
+import sidemenuAdmin from '../views/sidemenu_admin';
 import FaqDataService from '../services/FaqDataService';
 export default {
     name: "faqdetail_customer",
@@ -37,6 +43,10 @@ export default {
             }
         }
     },
+    components: {
+            'side-menu': sidemenuAdmin,
+            // 'pop-up': popUp
+        }, 
     methods: {
         getFaq(fid){
             FaqDataService.get(fid)

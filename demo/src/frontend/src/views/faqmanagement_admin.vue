@@ -1,5 +1,6 @@
 <template>
 <div>
+    <side-menu></side-menu>
     <div id="notice-manager" >
         
             <!-- 검색 -->
@@ -53,6 +54,7 @@
 </div>
 </template>
 <script>
+import sidemenuAdmin from '../views/sidemenu_admin';
 // import axios from 'axios';
 import FaqDataService from '../services/FaqDataService';
 export default {
@@ -71,6 +73,10 @@ export default {
             pageNum: 0
             }
         },
+components: {
+            'side-menu': sidemenuAdmin,
+            // 'pop-up': popUp
+        },  
   prop:{
     listArray:{
         type: Array,
@@ -129,10 +135,10 @@ export default {
 #notice-manager {
     width: 1500px;
     min-height: 500px;
-    /* margin: auto; */
+    margin: auto; 
     margin-top: 50px;
     margin-bottom: 100px;
-    /* margin-left: 200px; */
+    margin-left: 200px;
     padding:1px 16px;
 }
 

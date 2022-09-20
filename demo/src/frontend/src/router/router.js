@@ -25,8 +25,6 @@ import addAddress from '../views/addaddress_customer.vue';
 import addressList from '../views/addressList_customer.vue';
 import addressUpdate from '../views/changeaddress_customer.vue';
 
-import faqCustomer from '../views/faq_customer.vue';
-import faqdetailCustomer from '../views/faqdetail_customer.vue';
 import faqdetailAdmin from '../views/faqdetail_admin.vue';
 import faqmanagementAdmin from '../views/faqmanagement_admin.vue';
 import faqaddAdmin from '../views/faqadd_admin.vue';
@@ -164,6 +162,11 @@ export const router = new Router({
       component: noticeUpdate
     },
     {
+      path: '/user/detail/:username',
+      name: 'user-detail',
+      component: userDetail
+    },
+    {
       path: '/user/address/add',
       name: 'address-add',
       component: addAddress
@@ -177,16 +180,6 @@ export const router = new Router({
       path: '/user/address/update/:aid',
       name: 'address-update',
       component: addressUpdate
-    },
-    {
-      path: "/faq",
-      name: "faq-list",
-      component: faqCustomer
-    },
-    {
-      path: "/faq/detail/:fid",
-      name: "faq-detail-customer",
-      component: faqdetailCustomer
     },
     {
       path: "/admin/faq/detail_admin/:fid",
@@ -299,15 +292,11 @@ export const router = new Router({
       component: UpdateoStatus
     },
     {
-      path: '/user/detail/:username',
-      name: 'user-detail',
-      component: userDetail
-    },
-    {
       path: '/admin/user',
       name: 'userList-admin',
       component: userList
     },
+
 
 
   ]

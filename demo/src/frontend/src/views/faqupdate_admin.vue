@@ -1,6 +1,6 @@
 <template>
     <div>
-    
+    <side-menu></side-menu>
         <div> 
             <h2 style="text-align:left;margin-left:500px;"> FAQ 수정 </h2>
             <hr style="width:50%;margin-left:500px;">
@@ -18,11 +18,12 @@
             </tr>
         </tbody>
     </table>
-<button class="button1" @click="updateFaq()">수정하기</button>
+<button style="margin-left:850px;" class="button1" @click="updateFaq()">수정하기</button>
 <button class="button1" @click="cancel()">취소하기</button> 
 </div>
 </template>
 <script>
+    import sidemenuAdmin from '../views/sidemenu_admin';
     import FaqDataService from '../services/FaqDataService';
     export default {
         name: "faq-update",
@@ -36,6 +37,10 @@
                 }
             }
         },
+        components: {
+            'side-menu': sidemenuAdmin,
+            // 'pop-up': popUp
+        }, 
         methods: {
             getFaq(fid){   
                 FaqDataService.update(fid)
