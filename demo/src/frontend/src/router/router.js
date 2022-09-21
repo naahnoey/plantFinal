@@ -57,6 +57,8 @@ import reviewDetailAdmin from '../views/reviewDetailAdmin.vue';
 import userList from '../views/userListAdmin.vue';
 import userDetail from '../views/userDetail.vue';
 
+import interiorView from '../views/interiorView.vue';
+
 Vue.use(Router);
 export const router = new Router({
   // mode: 'history',
@@ -296,7 +298,11 @@ export const router = new Router({
       name: 'userList-admin',
       component: userList
     },
-
+    {
+      path: '/interior',
+      name: 'interior-view',
+      component: interiorView
+    },
 
 
   ]
