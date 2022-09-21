@@ -31,7 +31,7 @@
    
 
 <button type="button" id="createInquiry" class="reviewButton" @click="addNotice">등록하기</button>
-<button type="button" id="cancelInquiry" class="reviewButton" onclick="close_popup()">취소하기</button>
+<button type="button" id="cancelInquiry" class="reviewButton" @click="backtoList">취소하기</button>
  
      
 </div>
@@ -65,7 +65,7 @@
      
         methods: {
             closePopup: function(){
-        this.$emit('close-popup')
+            this.$emit('close-popup')
             },
             addNotice(){
              
@@ -84,7 +84,10 @@
                     
                 }).catch(e => console.log(e));
                 
-            }
+            },
+            backtoList: function(){
+                this.$router.go(-1);
+            },
         }
     }
 </script>

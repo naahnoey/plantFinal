@@ -136,7 +136,7 @@
                                 </li>
                                 <!-- Q&A 버튼 화면 전환-->
                                 <li>
-                                    <button type="button" class="btn">Q&A</button>
+                                    <button type="button" class="btn">FAQ/Q&A</button>
                                     <div id="tab3" class="cont">
                                         <!-- Q&A 화면 구성 시작 -->
                                         <div id="qnaContent">
@@ -152,7 +152,7 @@
                                             <div class="submit-form">
                                                 <section>
                                                     <div id="faq-main">
-                                                        <table class="text-center">
+                                                        <table v-if="faqs != []" class="text-center">
                                                             <thead>
                                                                 <tr>
                                                                     <th>번호</th>
@@ -307,17 +307,20 @@
         }
       },
       methods: {
-        toPayment(pid){
-            pid = this.$route.params.pid;
-                    console.log(pid);
-                    ProductDataService.getProduct(pid)
-                    .then(response => {
-                        this.currentProduct = response.data;
-                        console.log(response.data);
-                    }).catch(e => {
-                        console.log(e);
-                    });
-                    var idToken = window.localStorage.getItem("user");
+              toPayment(pid){
+            var idToken = window.localStorage.getItem("user");
+
+            if(idToken != null) {
+                pid = this.$route.params.pid;
+                console.log(pid);
+                ProductDataService.getProduct(pid)
+                .then(response => {
+                    this.currentProduct = response.data;
+                    console.log(response.data);
+                }).catch(e => {
+                    console.log(e);
+                });
+                    idToken = window.localStorage.getItem("user");
                     var jsonIdToken = JSON.parse(idToken);
                     this.cart.username = jsonIdToken.username;
                     console.log(jsonIdToken.username);
@@ -338,6 +341,11 @@
                         console.log(e);
     
                     })
+            } else {
+                alert("로그인 후 이용하세요.");
+                this.$router.push("/login");
+            }
+
         },
 
 
@@ -359,42 +367,53 @@
                 console.log(e);
             })
         },
-        putintoCart(pid){
-            pid = this.$route.params.pid;
-            console.log(pid);
-            ProductDataService.getProduct(pid)
-            .then(response => {
-                this.currentProduct = response.data;
-                console.log(response.data);
-            }).catch(e => {
-                console.log(e);
-            });
-            var idToken = window.localStorage.getItem("user");
-            var jsonIdToken = JSON.parse(idToken);
-            this.cart.username = jsonIdToken.username;
-            console.log(jsonIdToken.username);
-            var newCart = {
-                product : this.currentProduct,
-                username: this.cart.username,
-                pquantity: this.cart.pquantity
-            };
-            cartService.create(newCart)
-            .then(response => {
-                this.cart = response.data;
-                console.log(response.data);
-                console.log(this.currentProduct.pid);
-                var confirm 
-                = window.confirm("해당 상품을 장바구니에 추가하였습니다. 장바구니로 이동하시겠습니까?")
-                if(confirm){
-                    this.$router.push({name: 'cartlist'})
-                } else {
-                    this.$router.go(0);
-                }
-            }).catch(e => {
-                console.log(e);
+      putintoCart(pid){
 
-            })
+            var idToken = window.localStorage.getItem("user");
+
+            if( idToken != null ) {
+
+                pid = this.$route.params.pid;
+                console.log(pid);
+                ProductDataService.getProduct(pid)
+                .then(response => {
+                    this.currentProduct = response.data;
+                    console.log(response.data);
+                }).catch(e => {
+                    console.log(e);
+                });
+                idToken = window.localStorage.getItem("user");
+                var jsonIdToken = JSON.parse(idToken);
+                this.cart.username = jsonIdToken.username;
+                console.log(jsonIdToken.username);
+                var newCart = {
+                    product : this.currentProduct,
+                    username: this.cart.username,
+                    pquantity: this.cart.pquantity
+                };
+                cartService.create(newCart)
+                .then(response => {
+                    this.cart = response.data;
+                    console.log(response.data);
+                    console.log(this.currentProduct.pid);
+                    var confirm 
+                    = window.confirm("해당 상품을 장바구니에 추가하였습니다. 장바구니로 이동하시겠습니까?")
+                    if(confirm){
+                        this.$router.push({name: 'cartlist'})
+                    } else {
+                        this.$router.go(0);
+                    }
+                }).catch(e => {
+                    console.log(e);
+
+                })
+            } else {
+                alert("로그인 후 이용하세요.");
+                this.$router.push("/login");
+            }
+
         },
+
 
         retrieveQuestions() {   // 전체 문의글 목록
             QuestionDataService.getAll(this.$route.params.pid)

@@ -25,7 +25,7 @@
                         <th>카테고리</th>
                         <th>재고</th>
                         <th>이미지</th>
-                        <th>수정/삭제</th>
+                        <th>수정</th>
                     </tr>
                 </thead>
                 <tbody>
