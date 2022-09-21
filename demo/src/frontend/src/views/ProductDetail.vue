@@ -250,6 +250,9 @@
       name: 'ProductDetail',
       data() {
         return {
+            faqs: [],
+            currentFaq: null,
+            faqShow:false,
             products: [],
             files: [],
             currentFile: null,
