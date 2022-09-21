@@ -49,9 +49,7 @@
                                             <h1> Product Details </h1><br>
                                             {{ currentProduct.pname }} <br><br>
                                             <img :src="currentProduct.pimg1" class="img-size" ><br><br>
-                                            <div v-html="currentProduct.pdetail">
-
-                                            </div>
+                                            <!-- <div v-html="parseDetail"></div> -->
 
                                             <br><br>
                                             <p style="background-color: rgb(190, 190, 190); color: white; font-weight: bold; width: 800px; margin-left: 150px;"> ※ 시장 상황에 따라서 식물의 크기가 다소 차이가 날 수 있으니 양해 부탁드립니다.  </p>
@@ -333,7 +331,10 @@
       computed : {
         totalPrice: function() {
             return this.currentProduct.pprice * this.cart.pquantity;
-        }
+        },
+        // parseDetail: function() {
+        //     return this.currentProduct.pdetail.replace(/\n/g, "<br>")
+        // }
       },
       methods: {
         toPayment(pid){

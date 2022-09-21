@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div id="root" class="root">
+    <div id="root" class="root" style="margin-bottom: 500px;">
+      <div v-if="cartlist != []">
       <div
         id="cart_item"
         v-for="(cart, index) in cartlist"
         :key="index"
-        
       >
         <!-- 장바구니 아이템 목록 반복문으로 구현 예정 -->
         <div>
@@ -57,11 +57,11 @@
         </div>
       </div>
       <div>
-        <label id="total_price" style="float: right; margin-right: 500px">
+        <label id="total_price" style="float: right; margin-right: 110px">
           합계 : {{ total }}
           
         </label>
-        <router-link tag="button" :to="`/orderconfirm`" type="button" id="order-all" style="position: relative; margin-top: 100px; float: center; margin-left: 500px; background-color: rgb(22,160, 133); color:white; font-size: 20px; border-radius: 8px; border: none; width: 140px; height: 40px; ">전체 주문하기</router-link>
+        <router-link tag="button" :to="`/orderconfirm`" type="button" id="order-all" style="position: relative; margin-top: 100px; float: center; margin-left: 500px; background-color: rgb(22,160, 133); color:white; font-size: 20px; border-radius: 8px; border: none; width: 140px; height: 40px; margin-bottom: 300px;">전체 주문하기</router-link>
       </div>
 
       <!-- <nav id="paging" style="z-index: -1;">
@@ -73,6 +73,9 @@
               <li class="page-item"><a class="page-link" href="#">3</a></li>
             </ul>
         </nav>  -->
+      </div>
+
+      <div v-else style="text-align: center;"><h3> 현재 장바구니가 비었습니다. </h3></div>
     </div>
 
     
@@ -184,7 +187,7 @@ body {
 }
 
 .root {
-  position: absolute;
+  position: relative;
   width: 1500px;
   margin-left: 20%;
   display: inline-block;
@@ -206,7 +209,7 @@ body {
 footer {
   margin-top: 1200px;
   text-align: left;
-  display: inline-block;
+ 
 }
 
 .title {

@@ -28,7 +28,7 @@
       
         <h4> 배송지 </h4>
         <hr style="width: 540px;">
-        <table style="font-size: 12px; margin-bottom: 80px;">
+        <table style="font-size: 12px; margin-bottom: 80px;" v-if="this.selectedAddress != '직접 입력'">
             <thead>
                 <th >
                     배송지를 선택하세요
@@ -36,7 +36,7 @@
                 <th style=""><select style="width: 130px; margin-top: 100px; justify-content: center; margin-top: 0px;" v-model="selectedAddress" >
                     <option disabled selected="selected"> 배송지 선택</option>
                     <option v-for="(address, index) in addressList" :key="index" :value="address">{{address.aname}}</option>
-                    <option >직접 입력</option>
+                    <option >{{manualInput.aname}}</option>
                  </select></th>
             </thead>
             <tbody style="border: 1px solid black;" >
@@ -55,6 +55,37 @@
                     <td style="border-bottom: none;"><input type="text" v-model="selectedAddress.apostcode" style="width: 80px;" readonly>&nbsp;<button class="findbtn" type="button" style="font-size: 9px; width: 100px;height: 20px; background-color: rgb(22,160,133); border: none; border-radius: 8px; color: white; font-weight: bold;" @click="showApi">우편번호찾기</button><br>
                         <input type="text" v-model="selectedAddress.aaddress1" style="margin-top: 3px; width: 300px;" readonly placeholder="우편번호찾기를 먼저 이용해주세요"><br> 
                         <input type="text" v-model="selectedAddress.aaddress2" style="margin-top: 3px; width: 300px;" placeholder="상세주소를 입력하세요"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="font-size: 12px; margin-bottom: 80px;" v-else>
+            <thead>
+                <th >
+                    배송지를 선택하세요
+                </th>
+                <th style=""><select style="width: 130px; margin-top: 100px; justify-content: center; margin-top: 0px;" v-model="selectedAddress" >
+                    <option disabled selected="selected"> 배송지 선택</option>
+                    <option v-for="(address, index) in addressList" :key="index" :value="address">{{address.aname}}</option>
+                    <option >{{manualInput.aname}}</option>
+                 </select></th>
+            </thead>
+            <tbody style="border: 1px solid black;" >
+                
+                <tr style="border: 1px solid black;">
+                    <th style="border: 1px solid black; background-color: rgb(224,224,224);">수령인명</th>
+                    <td><input type="text" v-model="manualInput.areceipt" placeholder="수령인 성함을 입력하세요" style="width: 300px;"></td>
+                </tr>
+                
+                <tr style="border: 1px solid black;">
+                    <th style="border: 1px solid black; background-color: rgb(224,224,224);">휴대전화번호</th>
+                    <td><input type="text" v-model="manualInput.amobile" placeholder="'-' 를 포함하여 연락처를 입력하세요" style="width: 300px;"></td>
+                </tr>
+                <tr style="border: 1px solid black;">
+                    <th style="border-bottom: none; border: 1px solid black; background-color: rgb(224,224,224);">주소</th>
+                    <td style="border-bottom: none;"><input type="text" v-model="manualInput.apostcode" style="width: 80px;" readonly>&nbsp;<button class="findbtn" type="button" style="font-size: 9px; width: 100px;height: 20px; background-color: rgb(22,160,133); border: none; border-radius: 8px; color: white; font-weight: bold;" @click="showApi">우편번호찾기</button><br>
+                        <input type="text" v-model="manualInput.aaddress1" style="margin-top: 3px; width: 300px;" readonly placeholder="우편번호찾기를 먼저 이용해주세요"><br> 
+                        <input type="text" v-model="manualInput.aaddress2" style="margin-top: 3px; width: 300px;" placeholder="상세주소를 입력하세요"></td>
                 </tr>
             </tbody>
         </table>
@@ -106,6 +137,14 @@
                 selectedAddress: {
                     aid: null,
                     aname: "",
+                    areceipt: "", 
+                    amobile: "",
+                    apostcode: "",
+                    aaddress1: "",
+                    aaddress2: ""
+                },
+                manualInput: {
+                    aname: "직접 입력",
                     areceipt: "", 
                     amobile: "",
                     apostcode: "",
@@ -175,6 +214,7 @@
                     alert("구매가 완료되었습니다.");
                     this.$router.push({name: 'orders-list'});
                 }).catch(e=>console.log(e));
+                CartService.delete(this.$route.params.cid);
 
                 },
            
@@ -210,8 +250,14 @@
             }
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            if(this.selectedAddress != "직접 입력"){
             this.selectedAddress.apostcode = data.zonecode; //5자리 새우편번호 사용
             this.selectedAddress.aaddress1 = fullRoadAddr;
+            } else if(this.selectedAddress == "직접 입력"){
+                this.manualInput.apostcode = data.zonecode;
+                this.manualInput.aaddress1 = fullRoadAddr;
+                console.log(this.manualInput);
+            }
         }
       }).open()
     },
