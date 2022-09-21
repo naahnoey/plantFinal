@@ -7,7 +7,7 @@
     <div id="notice-manager" >
         
             <!-- 검색 -->
-            <p id="notice-search" style="margin-left: 850px; margin-top: 100px;" >
+            <!-- <p id="notice-search" style="margin-left: 850px; margin-top: 100px;" >
                 <select style="border: solid rgb(224,224,224) 0.5px; margin-left: -400px;">
                     <option>제목</option>
                     <option>기간</option>
@@ -16,7 +16,7 @@
                 <input type="text" placeholder="검색어를 입력하세요">
                 &nbsp;&nbsp;
                 <button class="btn">검색</button>
-            </p>
+            </p> -->
 
             <!-- 추가 버튼 및 팝업 내용-->
             <p id="notice-add">
@@ -28,7 +28,7 @@
             <table class="table text-center">
                 <thead>
                     <tr>
-                        <th>구분</th>
+                        <th>번호</th>
                         <th>제목</th>
                         <th>작성일</th>
                         <th>수정일</th>
@@ -209,11 +209,8 @@ export default {
 }
 #notice-manager tbody tr td:nth-child(2) {  /* 제목 */
     width: 45%;
-    text-align: left;
 }
-#notice-manager tbody tr td:nth-child(2) span {
-    margin-left: 5%;
-}
+
 #notice-manager tbody tr td:nth-child(3) {  /* 기간 */
     width: 25%;
 }

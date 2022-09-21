@@ -2,30 +2,37 @@
    <section>
       <div id="a1">
          <img src="../assets/chatbotstart.png" id="image"><br>
-         <textarea id="start" v-model="mytext"/><br>
+         <!-- <textarea id="start" v-model="mytext"/><br> -->
+         <pre>{{mytext}}더 많은 반려 식물 관련 정보를 얻고 싶으시면<br><a :href="chatbot.url">{{chatbot.title}}</a>에 방문해 주세요</pre>
          <textarea id="content" rows=20></textarea><br>                
-         <input type="text" id="queryin" > 
-         <button id="query">질문</button> 
+         <input type="text" id="queryin"> 
+         <button id="query">질문</button>
       </div>
    </section>
 </template>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script>
-import $ from 'jquery';
      export default {
       data(){
          return {
-            mytext:'안녕하세요.\n트레플 챗봇에 오신 것을 환영합니다.\n\n아래 채팅창을 통해 식물과 관련된 정보를 검색하실 수 있습니다.\n\nex) 동백나무, 고무나무 정보, 공중식물'
+            mytext:'안녕하세요.\n트레플 챗봇에 오신 것을 환영합니다.\n\n아래 채팅창을 통해 식물과 관련된 정보를 검색하실 수 있습니다.\n\nex) 동백나무, 고무나무 정보, 공중식물 \n\n',
+            alldata:"", 
+            query:"",
+            chatbot:{
+               url:"https://www.wcpa.or.kr/main",
+               title:"세계반려식물협회"
+            }
          }
       },
-      mounted() {
-      $(function() { 
+      mounted(){
+         $(function() { 
         $("#query").click( function() {
            /*$("#content").append($("#queryin").val());*/
             $.ajax( {
              type: "post",
              dataType: "text",
              async: false,
-             url: "http://101.101.209.116:8090/api/chatbot/chatbot/",
+             url: "http://115.85.180.27:8090/api/chatbot/chatbot",
              data: 
             {
                 query:$('#queryin').val()
@@ -44,8 +51,9 @@ import $ from 'jquery';
                }   
            });           
         });  
-      }) 
-   }
+     }) 
+       }
+
    }
 </script>
 
