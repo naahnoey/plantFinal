@@ -49,7 +49,7 @@
                                             <h1> Product Details </h1><br>
                                             {{ currentProduct.pname }} <br><br>
                                             <img :src="currentProduct.pimg1" class="img-size" ><br><br>
-                                            <!-- <div v-html="parseDetail"></div> -->
+                                            <div v-html="parseDetail"></div>
 
                                             <br><br>
                                             <p style="background-color: rgb(190, 190, 190); color: white; font-weight: bold; width: 800px; margin-left: 150px;"> ※ 시장 상황에 따라서 식물의 크기가 다소 차이가 날 수 있으니 양해 부탁드립니다.  </p>
@@ -128,23 +128,7 @@
                                                     </tbody>
                                                 </table>
 
-                                               
-                                                <!-- <p id="paging">
-                                                    <button style="color:white; background-color:rgb(22, 160, 133)">1</button>
-                                                    <button>2</button>
-                                                    <button >3</button>
-                                                    <button>4</button>
-                                                </p> -->
-                                                <!-- 페이징 부트스트랩 코드 -->
-                                                <!-- <nav style="z-index: -1;">
-                                                    <ul class="pagination pagination-sm d-flex justify-content-center">
-                                                      <li class="page-item active" aria-current="page">
-                                                        <span class="page-link">1</span>
-                                                      </li>
-                                                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    </ul>
-                                                </nav>    -->
+                                            
                                         </div>  
                                          
                                         <!-- Review 화면 구성 끝-->                      
@@ -236,24 +220,7 @@
                                             <p v-if="questions == []">
                                                 문의사항이 없습니다.
                                             </p>
-                                            <!--
-                                            <p id="paging">
-                                                <button style="color:white; background-color:rgb(22, 160, 133)">1</button>
-                                                <button>2</button>
-                                                <button >3</button>
-                                                <button>4</button>
-                                            </p>
-                                            -->
-                                            <!-- 페이징 부트스트랩 코드 -->
-                                            <!-- <nav style="z-index: -1;">
-                                                    <ul class="pagination pagination-sm d-flex justify-content-center">
-                                                    <li class="page-item active" aria-current="page">
-                                                        <span class="page-link">1</span>
-                                                    </li>
-                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    </ul>
-                                                </nav>    -->
+                       
                                         </div>   
                                         <!-- Q&A 화면 구성 끝-->
                                     </div>
@@ -332,9 +299,9 @@
         totalPrice: function() {
             return this.currentProduct.pprice * this.cart.pquantity;
         },
-        // parseDetail: function() {
-        //     return this.currentProduct.pdetail.replace(/\n/g, "<br>")
-        // }
+        parseDetail: function() {
+            return this.currentProduct.pdetail.replace(/\n/g, "<br>")
+        }
       },
       methods: {
         toPayment(pid){
