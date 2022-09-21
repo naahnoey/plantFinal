@@ -10,8 +10,8 @@
       </div>
    </section>
 </template>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script>
+   import $ from 'jquery';
      export default {
       data(){
          return {
