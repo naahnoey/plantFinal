@@ -48,7 +48,7 @@
           <router-link to="/admin/user" class="nav-link" style="color: rgb(64, 64, 64)">관리자페이지</router-link>
         </li>
         <li class="nav-item">
-          <router-link v-if="showUserBoard" to="`/user/detail/${username}` " class="nav-link" style="color: rgb(64, 64, 64)">마이페이지</router-link>
+          <router-link v-if="showUserBoard" :to="`/user/detail/${username}`" class="nav-link" style="color: rgb(64, 64, 64)">마이페이지</router-link>
         </li>
         <li class="nav-item">
           <router-link v-if="showUserBoard" to="/cart" class="nav-link" style="color: rgb(64, 64, 64)"  class-active="active">장바구니</router-link>

@@ -20,7 +20,8 @@
             <div
               v-if="submitted && errors.has('username')"
               class="alert-danger"
-            >{{errors.first('username')}}</div>
+              role="alert"
+            >아이디는 필수입니다.</div>
           </div>
           <div class="form-group">
             <label for="email">이메일</label>
@@ -34,7 +35,8 @@
             <div
               v-if="submitted && errors.has('email')"
               class="alert-danger"
-            >{{errors.first('email')}}</div>
+               role="alert"
+            >이메일은 필수입니다.</div>
           </div>
           <div class="form-group">
             <label for="password">비밀번호</label>
@@ -48,7 +50,8 @@
             <div
               v-if="submitted && errors.has('password')"
               class="alert-danger"
-            >{{errors.first('password')}}</div>
+              role="alert"
+            >비밀번호는 필수입니다.</div>
           </div>
           <div class="form-group">
             <button class="btn btn-block" style="background-color: rgb(22, 160, 133); color: white" >회원가입</button>
