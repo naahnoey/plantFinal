@@ -118,7 +118,7 @@
         </div>
         
     </footer>
-     <div style="margin-top: 200px;"></div>
+    
 
   </div>
 </template>
