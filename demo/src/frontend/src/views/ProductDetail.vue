@@ -633,12 +633,12 @@
     .product_name {
         margin-top: 30px;
         margin-left: -50px;
-        width: 140px;
+        width: 200px;
     }
     
     .product_price {
         margin-top: 80px;
-        margin-left: -140px;
+        margin-left: -200px;
     }
     
     .product_qunatity {
