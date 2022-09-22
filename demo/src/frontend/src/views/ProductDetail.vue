@@ -85,7 +85,7 @@
                                                     <p v-if="currentReview.rmodifydate == null">{{currentReview.rdate}}</p>
                                                     <p v-if="currentReview.rmodifydate != null">{{currentReview.rmodifydate}}(수정)</p>
                                                     <p class="reviewContent"> {{ currentReview.rcontent}}</p>
-                                                    <div style="margin-bottom: 20px;" id="reviewBtn">
+                                                    <div style="margin-bottom: 20px;" id="reviewBtn" v-if="currentReview.username == username">>
                                                         <button @click="deleteReview" style="background-color: rgb(22,160,133); color: white; font-weight: bold; border:none; border-radius: 5px;">삭제</button>
                                                         <router-link :to="`/review/modify/${currentReview.rid}`" tag="button" style="background-color: rgb(22,160,133); color: white; font-weight: bold; border:none; border-radius: 5px;">수정</router-link>
                                                         
