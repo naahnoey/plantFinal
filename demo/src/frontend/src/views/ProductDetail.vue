@@ -1063,4 +1063,53 @@
         text-align: center;
     }
     
+    #faq-search {    /* 검색칸 화면 가운데 배치 */
+        margin-left: 500px;
+    }
+    #faq-search input {
+        width: 300px;
+    }
+    #faq-search button {
+        background-color: lightgray;
+    }
+    /* faq(사용자) */
+    #faq-main {
+        width: 1100px;
+        margin: auto;
+        padding-top: 70px;
+    }
+
+    #faq-main table {
+        width: 100%;
+        margin: auto;
+        border-collapse: collapse;
+        font-size: 14px;
+        border-top: 2px solid whitesmoke;
+        border-bottom: 1px solid lightgray;
+    }
+    #faq-main thead {
+        background-color: whitesmoke;
+        height: 40px;
+    }
+    #faq-main tbody tr {
+        height: 60px;
+    }
+    #faq-main tbody tr td {  /* 게시판 구분선 */
+        border-top: 1px solid lightgray;
+    }
+
+    /* 셀 가로 길이 설정 */
+    #faq-main thead tr th:nth-child(1) { /* 번호 */
+        width: 15%;
+    }
+    #faq-main thead tr th:nth-child(2) { /* 자주묻는질문 */
+        text-align: center;
+        width: 85%;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    #faq-main tbody tr td:nth-child(2) a {
+        text-decoration: none;
+        color: black;
+    }
 </style>
